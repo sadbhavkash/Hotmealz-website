@@ -1,0 +1,50 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand: #e85d0c;
+  --color-brand-dark: #c24a06;
+  --color-ink: #111111;
+  --color-cream: #faf7f2;
+  --color-gold: #e8b04a;
+
+  --font-display: "Bebas Neue", sans-serif;
+  --font-body: "Outfit", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: light;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--color-ink);
+  background:
+    radial-gradient(55rem 40rem at 90% -5%, rgba(232, 93, 12, 0.14), transparent 60%),
+    radial-gradient(45rem 35rem at -10% 35%, rgba(232, 176, 74, 0.18), transparent 60%),
+    radial-gradient(50rem 40rem at 100% 80%, rgba(232, 93, 12, 0.1), transparent 60%),
+    var(--color-cream);
+  background-attachment: fixed;
+}
+
+/* faint dot texture */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: radial-gradient(rgba(17, 17, 17, 0.07) 1px, transparent 1px);
+  background-size: 22px 22px;
+  mask-image: linear-gradient(to bottom, black, transparent 70%);
+}
+
+section[id] {
+  scroll-margin-top: 6rem;
+}
+
+::selection {
+  background: var(--color-brand);
+  color: white;
+}
