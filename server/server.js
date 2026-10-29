@@ -10,6 +10,7 @@ app.set("trust proxy", 1);
 const allowedOrigins = (process.env.CLIENT_URL || "")
   .split(",")
   .map((s) => s.trim());
+  app.use(cors({ origin: allowedOrigins }));
 
 app.use(cors({ origin: allowedOrigins }));
 app.use(express.json({ limit: "10kb" }));
