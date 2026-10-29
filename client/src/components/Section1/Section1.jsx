@@ -74,44 +74,30 @@ export default function Section1() {
 </motion.div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 mt-12 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-        {features.map(({ icon: Icon, label }) => (
-          <div key={label} className="flex flex-col items-center text-center gap-3">
-            <div className="w-16 h-16 rounded-full border-2 border-brand flex items-center justify-center">
-              <Icon className="text-brand" size={28} />
-            </div>
-            <p className="text-xs font-bold uppercase tracking-wide max-w-[120px]">
-              {label}
-            </p>
-          </div>
-        ))}
-      </div>
-
-      <div className="mt-12 flex font-display text-4xl sm:text-5xl">
-        <div className="bg-brand text-white px-8 py-4 pr-16 [clip-path:polygon(0_0,100%_0,92%_100%,0_100%)]">
+                  <div className="mt-12 flex w-full font-display text-3xl sm:text-5xl lg:text-6xl">
+        <div className="flex-1 flex items-center justify-center whitespace-nowrap bg-brand text-white px-4 sm:px-8 py-4 sm:py-6 [clip-path:polygon(0_0,100%_0,94%_100%,0_100%)]">
           JUST TWIST.
         </div>
-        <div className="bg-ink text-white px-8 py-4 -ml-6 [clip-path:polygon(8%_0,100%_0,92%_100%,0_100%)]">
+        <div className="flex-1 flex items-center justify-center whitespace-nowrap bg-ink text-white px-4 sm:px-8 py-4 sm:py-6 -ml-[3%] [clip-path:polygon(6%_0,100%_0,94%_100%,0_100%)]">
           WAIT.
         </div>
-        <div className="bg-gold text-ink px-8 py-4 -ml-6 [clip-path:polygon(8%_0,100%_0,100%_100%,0_100%)]">
+        <div className="flex-1 flex items-center justify-center whitespace-nowrap bg-gold text-ink px-4 sm:px-8 py-4 sm:py-6 -ml-[3%] [clip-path:polygon(6%_0,100%_0,100%_100%,0_100%)]">
           ENJOY.
-
-          <motion.div
-  initial={{ opacity: 0, y: 30 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  viewport={{ once: true, amount: 0.2 }}
-  transition={{ duration: 0.7 }}
-  className="overflow-x-auto"
->
-  <img
-    src={lifestyle}
-    alt="Perfect for travelers, office professionals, students, campers, truck drivers and fitness enthusiasts"
-    className="block w-full min-w-[900px]"
-  />
-</motion.div>
         </div>
       </div>
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.7 }}
+        className="overflow-x-auto"
+      >
+        <img
+          src={lifestyle}
+          alt="Perfect for travelers, office professionals, students, campers, truck drivers and fitness enthusiasts"
+          className="block w-full min-w-[900px]"
+        />
+      </motion.div>
     </section>
   );
 }

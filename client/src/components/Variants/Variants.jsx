@@ -1,14 +1,24 @@
 import { motion } from "framer-motion";
-import { LuCheck, LuSprout } from "react-icons/lu";
-
+import { LuCheck, LuSprout, LuSoup } from "react-icons/lu";
 import paneer from "../../assets/paneer.png";
 import butterChicken from "../../assets/butter-chicken.png";
+
+// Fades the photo's edges so it melts into the card.
+// Remove "feather" from the <img> if you switch to transparent cutouts.
+const feather = {
+  WebkitMaskImage:
+    "linear-gradient(to right, transparent, black 14%, black 86%, transparent), linear-gradient(to bottom, transparent, black 14%, black 86%, transparent)",
+  maskImage:
+    "linear-gradient(to right, transparent, black 14%, black 86%, transparent), linear-gradient(to bottom, transparent, black 14%, black 86%, transparent)",
+  WebkitMaskComposite: "source-in",
+  maskComposite: "intersect",
+};
 
 const variants = [
   {
     name: "Paneer Tikka Masala Rice Meal",
     image: paneer,
-    bg: "bg-gradient-to-br from-[#5a1414] to-[#3a0b0b]",
+    bg: "bg-gradient-to-br from-[#6b1a1a] to-[#3a0b0b]",
     contents: ["Steamed Rice", "Paneer Tikka Masala Gravy", "High Protein Vegetarian Meal"],
     highlights: ["Rich Indian Flavour", "Vegetarian", "Balanced Nutrition", "Convenient Meal Solution"],
   },
@@ -23,9 +33,22 @@ const variants = [
 
 function Tag({ children }) {
   return (
-    <span className="inline-block bg-gold text-ink font-display text-xl tracking-wide px-4 py-1 rounded-sm">
-      {children}
-    </span>
+    <div className="flex items-center gap-3">
+      <span className="inline-block bg-gold text-ink font-display text-lg sm:text-xl tracking-wide px-3 py-0.5 rounded-sm">
+        {children}
+      </span>
+      <span className="h-px flex-1 bg-gold/40" />
+    </div>
+  );
+}
+
+function ProteinBadge() {
+  return (
+    <div className="shrink-0 w-20 h-20 sm:w-24 sm:h-24 rounded-full border-2 border-gold bg-black/30 flex flex-col items-center justify-center text-gold leading-none">
+      <LuSprout size={18} />
+      <span className="font-display text-xl sm:text-2xl mt-1">HIGH</span>
+      <span className="text-[9px] sm:text-[10px] font-bold tracking-wider">PROTEIN</span>
+    </div>
   );
 }
 
@@ -39,7 +62,7 @@ export default function Variants() {
           <span className="h-px flex-1 bg-brand/60" />
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-8">
+        <div className="grid xl:grid-cols-2 gap-8">
           {variants.map((v, i) => (
             <motion.article
               key={v.name}
@@ -47,35 +70,45 @@ export default function Variants() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.6, delay: i * 0.15 }}
-              className={`${v.bg} text-white rounded-3xl p-6 sm:p-8 grid sm:grid-cols-2 gap-6 items-center overflow-hidden`}
+              className={`${v.bg} text-white rounded-3xl p-6 sm:p-8 grid sm:grid-cols-[1fr_1.25fr] gap-6 items-center overflow-hidden`}
             >
-              <img
-                src={v.image}
-                alt={v.name}
-                className="w-full max-w-xs mx-auto drop-shadow-2xl hover:scale-105 transition-transform duration-500"
-              />
-
+              {/* Product image */}
               <div className="relative">
-                <h3 className="font-display text-4xl leading-tight mb-4">{v.name}</h3>
+                <div className="absolute inset-0 m-auto w-4/5 aspect-square rounded-full bg-white/10 blur-3xl" />
+                <img
+                  src={v.image}
+                  alt={v.name}
+                  style={feather}
+                  className="relative w-full max-w-sm mx-auto drop-shadow-2xl hover:scale-105 transition-transform duration-500"
+                />
+              </div>
 
-                <div className="absolute top-0 right-0 w-20 h-20 rounded-full border-2 border-gold bg-black/40 flex flex-col items-center justify-center text-gold text-center leading-none">
-                  <LuSprout size={16} />
-                  <span className="font-display text-lg mt-1">HIGH</span>
-                  <span className="text-[10px] font-bold">PROTEIN</span>
-                </div>
+              {/* Details */}
+              <div>
+                <h3 className="font-display text-3xl sm:text-4xl leading-tight mb-5">
+                  {v.name}
+                </h3>
 
                 <Tag>CONTENTS</Tag>
-                <ul className="mt-3 mb-5 space-y-1.5 text-sm">
-                  {v.contents.map((c) => (
-                    <li key={c}>• {c}</li>
-                  ))}
-                </ul>
+                <div className="flex items-center gap-4 mt-3 mb-5">
+                  <ul className="flex-1 space-y-2 text-sm">
+                    {v.contents.map((c) => (
+                      <li key={c} className="flex items-center gap-2">
+                        <LuSoup className="text-gold shrink-0" size={16} />
+                        {c}
+                      </li>
+                    ))}
+                  </ul>
+                  <ProteinBadge />
+                </div>
 
                 <Tag>HIGHLIGHTS</Tag>
-                <ul className="mt-3 space-y-1.5 text-sm">
+                <ul className="mt-3 space-y-2 text-sm">
                   {v.highlights.map((h) => (
                     <li key={h} className="flex items-center gap-2">
-                      <LuCheck className="text-gold shrink-0" size={16} />
+                      <span className="w-5 h-5 rounded-full border border-gold flex items-center justify-center shrink-0">
+                        <LuCheck className="text-gold" size={12} />
+                      </span>
                       {h}
                     </li>
                   ))}

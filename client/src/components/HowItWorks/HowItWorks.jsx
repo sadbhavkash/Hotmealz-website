@@ -1,4 +1,7 @@
 import { motion } from "framer-motion";
+import twistImg from "../../assets/twist.png";
+import waitImg from "../../assets/wait.png";
+import enjoyImg from "../../assets/enjoy.png";
 import {
   LuRotateCw,
   LuTimer,
@@ -20,24 +23,38 @@ import {
   LuCookingPot,
 } from "react-icons/lu";
 
+
+// fades the image's left and top edges so it melts into the white card
+const fadeLeftTop = {
+  WebkitMaskImage:
+    "linear-gradient(to right, transparent, black 35%), linear-gradient(to bottom, transparent, black 30%)",
+  maskImage:
+    "linear-gradient(to right, transparent, black 35%), linear-gradient(to bottom, transparent, black 30%)",
+  WebkitMaskComposite: "source-in",
+  maskComposite: "intersect",
+};
+
 const steps = [
-  {
+    {
     icon: LuRotateCw,
     title: "TWIST",
     sub: "THE BOTTOM",
     text: "Rotate the base of the container to activate the self-heating system.",
+    image: twistImg,
   },
-  {
+    {
     icon: LuTimer,
     title: "WAIT",
     sub: "8 MINUTES",
     text: "The self-heating technology automatically heats the meal to serving temperature.",
+    image: waitImg,
   },
-  {
+    {
     icon: LuSoup,
     title: "ENJOY",
     sub: "YOUR HOT MEAL",
     text: "Open the lid and enjoy a delicious hot protein meal anywhere.",
+    image: enjoyImg,
   },
 ];
 
@@ -85,28 +102,38 @@ export default function HowItWorks() {
 
         {/* 3 steps */}
         <div className="grid md:grid-cols-3 gap-6">
-          {steps.map(({ icon: Icon, title, sub, text }, i) => (
-            <motion.div
-              key={title}
-              {...fadeUp(i * 0.15)}
-              className="relative bg-white rounded-3xl border border-black/5 shadow-sm p-6 overflow-hidden"
-            >
-              <span className="w-12 h-12 rounded-full bg-brand text-white font-display text-3xl flex items-center justify-center">
-                {i + 1}
-              </span>
-              <h3 className="font-display text-4xl text-brand mt-4 leading-none">
-                {title}
-              </h3>
-              <p className="font-display text-3xl leading-none mt-1">{sub}</p>
-              <div className="h-px w-10 bg-brand my-4" />
-              <p className="text-gray-700 max-w-[220px]">{text}</p>
-              <Icon
-                className="absolute -right-4 -bottom-4 text-brand/10"
-                size={150}
-                strokeWidth={1.2}
-              />
-            </motion.div>
-          ))}
+          {steps.map(({ icon: Icon, title, sub, text, image }, i) => (
+  <motion.div
+    key={title}
+    {...fadeUp(i * 0.15)}
+    className="relative bg-white rounded-3xl border border-black/5 shadow-sm p-6 overflow-hidden min-h-[340px]"
+  >
+    <span className="w-12 h-12 rounded-full bg-brand text-white font-display text-3xl flex items-center justify-center">
+      {i + 1}
+    </span>
+    <h3 className="font-display text-4xl text-brand mt-4 leading-none">
+      {title}
+    </h3>
+    <p className="font-display text-3xl leading-none mt-1">{sub}</p>
+    <div className="h-px w-10 bg-brand my-4" />
+    <p className="relative z-10 text-gray-700 max-w-[55%]">{text}</p>
+
+    {image ? (
+      <img
+        src={image}
+        alt={`${title} ${sub}`}
+        style={fadeLeftTop}
+        className="absolute right-0 bottom-0 w-[56%] origin-bottom-right hover:scale-105 transition-transform duration-500"
+      />
+    ) : (
+      <Icon
+        className="absolute -right-4 -bottom-4 text-brand/10"
+        size={150}
+        strokeWidth={1.2}
+      />
+    )}
+  </motion.div>
+))}
         </div>
 
         {/* Perfect for + Why choose */}
