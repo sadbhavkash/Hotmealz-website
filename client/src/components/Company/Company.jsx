@@ -1,4 +1,6 @@
 import { motion } from "framer-motion";
+
+import sohamLogo from "../../assets/soham-logo.png";
 import {
   LuGlobe,
   LuSoup,
@@ -64,16 +66,19 @@ export default function Company() {
         {/* Intro */}
         <motion.div {...fadeUp()} className="grid lg:grid-cols-2 gap-10 items-center">
           <div>
-            <div className="flex items-center gap-4 mb-6">
-              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-indigo-950 to-indigo-600 flex items-center justify-center text-white font-display text-4xl">
-                S
-              </div>
-              <p className="font-serif text-3xl leading-tight">
-                SOHAM INDUSTRIES
-                <br />
-                GLOBAL
-              </p>
-            </div>
+            <img
+  src={sohamLogo}
+  alt="Soham Industries Global"
+  className="w-64 sm:w-80 mb-6 mix-blend-multiply"
+  style={{
+    WebkitMaskImage:
+      "linear-gradient(to right, transparent, black 8%, black 92%, transparent), linear-gradient(to bottom, transparent, black 8%, black 92%, transparent)",
+    maskImage:
+      "linear-gradient(to right, transparent, black 8%, black 92%, transparent), linear-gradient(to bottom, transparent, black 8%, black 92%, transparent)",
+    WebkitMaskComposite: "source-in",
+    maskComposite: "intersect",
+  }}
+/>
 
             <h3 className="font-display text-3xl sm:text-4xl">
               <span className="text-brand">INNOVATING THE FUTURE OF</span>{" "}
