@@ -7,7 +7,11 @@ const rateLimit = require("express-rate-limit");
 const app = express();
 app.set("trust proxy", 1);
 
-app.use(cors({ origin: process.env.CLIENT_URL }));
+const allowedOrigins = (process.env.CLIENT_URL || "")
+  .split(",")
+  .map((s) => s.trim());
+
+app.use(cors({ origin: allowedOrigins }));
 app.use(express.json({ limit: "10kb" }));
 
 app.get("/api/health", (_req, res) => res.json({ ok: true }));
