@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import sohamBuilding from "../../assets/soham-building.png";
 
 import sohamLogo from "../../assets/soham-logo.png";
 import {
@@ -99,17 +100,26 @@ export default function Company() {
             </p>
           </div>
 
-          <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-ink to-[#2a2a2a] min-h-[260px] flex items-center justify-center p-8">
-            <div className="text-center">
-              <p className="font-display text-gold text-2xl tracking-widest">
-                GLOBAL VISION
-              </p>
-              <LuGlobe className="text-gold mx-auto my-3" size={80} strokeWidth={1.2} />
-              <p className="font-display text-gold text-2xl tracking-widest">
-                QUALITY & TRUST
-              </p>
-            </div>
-          </div>
+          <div className="relative">
+  <div className="rounded-3xl overflow-hidden border-4 border-gold/70 shadow-xl">
+    <img
+      src={sohamBuilding}
+      alt="Soham Industries Global headquarters"
+      className="w-full h-72 sm:h-96 object-cover object-top hover:scale-105 transition-transform duration-700"
+    />
+  </div>
+
+  {/* Global Vision badge */}
+  <div className="absolute -bottom-6 -left-3 sm:-left-5 w-28 h-28 sm:w-32 sm:h-32 rounded-full bg-ink border-2 border-gold flex flex-col items-center justify-center text-center text-gold shadow-lg">
+    <LuGlobe size={26} strokeWidth={1.4} />
+    <span className="font-display text-sm leading-none mt-1 tracking-wider">
+      GLOBAL VISION
+    </span>
+    <span className="text-[8px] font-bold tracking-widest mt-1 text-white/80">
+      QUALITY & TRUST
+    </span>
+  </div>
+</div>
         </motion.div>
 
         {/* 4 cards */}
