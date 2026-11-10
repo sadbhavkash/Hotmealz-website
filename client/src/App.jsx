@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Counter from "./components/Counter/Counter";
 import Navbar from "./components/Navbar/Navbar";
 import Section1 from "./components/Section1/Section1";
 import Section2 from "./components/Section2/Section2";
@@ -7,6 +8,7 @@ import HowItWorks from "./components/HowItWorks/HowItWorks";
 import Company from "./components/Company/Company";
 import Footer from "./components/Footer/Footer";
 import UnlockGate from "./components/UnlockGate/UnlockGate";
+ import { Analytics } from "@vercel/analytics/react";
 
 const SCROLL_TRIGGER = 800; // px scrolled before the gate appears
 
@@ -50,6 +52,7 @@ export default function App() {
         }`}
       >
         <Navbar />
+        <Counter />
         <Section1 />
         <Section2 />
         <Variants />
@@ -59,6 +62,7 @@ export default function App() {
       </div>
 
       {showGate && <UnlockGate onUnlock={() => setUnlocked(true)} />}
+        <Analytics />
     </>
   );
 }
